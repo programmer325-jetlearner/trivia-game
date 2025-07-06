@@ -43,10 +43,31 @@ def draw():
     screen.draw.filled_rect(marquee_box,"#2E6C9E")
     screen.draw.filled_rect(question_box,"#F3B700")
     screen.draw.filled_rect(timer_box,"#DB5461")
+    screen.draw.filled_rect(skip_box,"#8AC9FE")
+    screen.draw.filled_rect(score_box,"#DB5461")
+    for answer_box in answer_boxes:
+        screen.draw.filled_rect(answer_box,"#0b3436")
+    
+    marquee_msg="welcome to the trivia game..."+f"Q:{question_index}/{question_count}"
+
+    screen.draw.textbox(marquee_msg,marquee_box,color="white")
+    screen.draw.textbox(str(time_left),timer_box,color="dark blue",shadow=(0.5,0.5),scolor="black")
+    screen.draw.textbox("skip",skip_box,color="dark green",angle=-90)
+    screen.draw.textbox(f"score:{score}",score_box,color="dark green")
+    screen.draw.textbox("hello world",question_box,color="red",shadow=(0.5,0.5),scolor="dark red")
+
+    for answer_box in answer_boxes:
+        screen.draw.textbox("hi",answer_box,color="blue")
+    
+
 
 def update():
-    pass
+    move_marquee()
 
+def move_marquee():
+    marquee_box.x-=2
+    if marquee_box.right<0:
+        marquee_box.left=WIDTH
 
 
 
